@@ -39,12 +39,7 @@ public class NotenProzessor {
         int[] abgerundet = new int[noten.length];
 
         for (int i = 0; i < noten.length; i++) {
-            int note = noten[i];
-            if (note < 38 || note % 5 < 3) {
-                abgerundet[i] = note;
-            } else {
-                abgerundet[i] = ((note / 5) + 1) * 5;
-            }
+            abgerundet[i] = abgerundeteNote(noten[i]);
         }
 
         return abgerundet;
