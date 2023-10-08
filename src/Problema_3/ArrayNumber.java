@@ -82,4 +82,52 @@ public class ArrayNumber {
         System.arraycopy(result, 0, resultWithSign, 1, result.length);
         return resultWithSign;
     }
+
+    public int[] multiply(int number) {
+        int n = this.number.length;
+        int[] result = new int[n];
+        int carry = 0;
+        for (int i = n - 1; i >= 0; i--) {
+            int product = this.number[i] * number + carry;
+            result[i] = product % 10;
+            carry = product / 10;
+        }
+        if (carry > 0) {
+            int[] newResult = new int[n + 1];
+            newResult[0] = carry;
+            System.arraycopy(result, 0, newResult, 1, n);
+            return newResult;
+        } else {
+            return result;
+        }
+    }
+
+    public int[] divide(int divisor) {
+        int n = this.number.length;
+        int[] quotient = new int[n];
+        int remainder = 0;
+
+        for (int i = 0; i < n; i++) {
+            int currentDigit = this.number[i] + remainder * 10;
+            quotient[i] = currentDigit / divisor;
+            remainder = currentDigit % divisor;
+        }
+
+        // Remove leading zeros from the quotient
+        int firstNonZeroIndex = 0;
+        while (firstNonZeroIndex < n && quotient[firstNonZeroIndex] == 0) {
+            firstNonZeroIndex++;
+        }
+
+        if (firstNonZeroIndex == n) {
+            // All zeros, return a single zero
+            return new int[]{0};
+        }
+
+        // Create the final quotient array
+        int[] finalQuotient = new int[n - firstNonZeroIndex];
+        System.arraycopy(quotient, firstNonZeroIndex, finalQuotient, 0, n - firstNonZeroIndex);
+
+        return finalQuotient;
+    }
 }
