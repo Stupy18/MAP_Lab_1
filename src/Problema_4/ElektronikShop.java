@@ -58,7 +58,6 @@ public class ElektronikShop {
                 }
             }
         }
-
         return maxSpent;
     }
 
