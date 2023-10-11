@@ -2,6 +2,9 @@ package Problema_2;
 
 public class ArrayWorker {
     public int maximalZahl(int[] array) {
+        if (array.length==0){
+            return -1;
+        }
         int max = -1;
         int i;
         for (i = 0; i < array.length; i++) {
@@ -13,6 +16,9 @@ public class ArrayWorker {
     }
 
     public int minimalZahl(int[] array) {
+        if (array.length==0){
+            return -1;
+        }
         int min = 1000;
         int i;
         for (i = 0; i < array.length; i++) {
@@ -24,6 +30,9 @@ public class ArrayWorker {
     }
 
     public int maximaleSumme(int[] array) {
+        if (array.length==0){
+            return -1;
+        }
         int sum = 0;
         int min = 1000;
 
@@ -38,6 +47,9 @@ public class ArrayWorker {
     }
 
     public int minimaleSumme(int[] array) {
+        if (array.length==0){
+            return -1;
+        }
         int sum = 0;
         int max = -1;
 
