@@ -29,6 +29,9 @@ public class ArrayNumber {
     }
 
     public int[] subtract(ArrayNumber other) {
+        if (this.number[0]< other.number[0]){
+            return new int[]{-1};
+        }
         int n = this.number.length;
         int[] result = new int[n];
         int borrow = 0;
@@ -103,6 +106,10 @@ public class ArrayNumber {
     }
 
     public int[] divide(int divisor) {
+        if (divisor == 0) {
+//            throw new ArithmeticException("Division by zero is not allowed.");
+            return new int[]{-1};
+        }
         int n = this.number.length;
         int[] quotient = new int[n];
         int remainder = 0;
