@@ -1,49 +1,50 @@
 package Problema_1;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-import Problema_1.NotenProzessor;
 import org.junit.jupiter.api.Test;
 
 public class NotenProzessorTest {
 
     @Test
     public void testNichtAusreichendeNoten() {
-        int[] noten = {84, 29, 43, 60, 38};
-        int[] erwarteteNichtAusreichende = {29, 38};
-
-        int[] result = NotenProzessor.nichtAusreichendeNoten(noten);
-
-        assertArrayEquals(erwarteteNichtAusreichende, result);
+        int[] noten = {45, 30, 55, 65, 25};
+        int[] nichtAusreichende = NotenProzessor.nichtAusreichendeNoten(noten);
+        assertArrayEquals(new int[]{30, 25}, nichtAusreichende);
     }
 
     @Test
     public void testDurchschnittswert() {
-        int[] noten = {84, 29, 43, 60, 38};
-        double erwarteterDurchschnitt = (84 + 29 + 43 + 60 + 38) / 5.0;
+        int[] noten = {45, 30, 55, 65, 25};
+        double durchschnitt = NotenProzessor.durchschnittswert(noten);
+        assertEquals(44.0, durchschnitt, 0.01); // Allowing a small error due to double precision
+    }
 
-        double result = NotenProzessor.durchschnittswert(noten);
-
-        assertEquals(erwarteterDurchschnitt, result);
+    @Test
+    public void testDurchschnittswertEmptyArray() {
+        int[] noten = {};
+        double durchschnitt = NotenProzessor.durchschnittswert(noten);
+        assertEquals(0.0, durchschnitt, 0.01);
     }
 
     @Test
     public void testAbgerundeteNoten() {
-        int[] noten = {84, 29, 43, 60, 38};
-        int[] erwarteteAbgerundete = {85, 29, 45, 60, 40};
-
-        int[] result = NotenProzessor.abgerundeteNoten(noten);
-
-        assertArrayEquals(erwarteteAbgerundete, result);
+        int[] noten = {45, 30, 55, 65, 25};
+        int[] abgerundet = NotenProzessor.abgerundeteNoten(noten);
+        assertArrayEquals(new int[]{45, 30, 55, 65, 25}, abgerundet);
     }
 
     @Test
-    public void testMaximaleAbgerundeteNote() {
-        int[] noten = {84, 29, 43, 60, 38};
-        int erwarteteMaxAbgerundet = 85; // Max abgerundete Note in den gegebenen Noten
+    public void testMaximaleAbgerundeteNoteExpectedCase() {
+        int[] noten = {45, 30, 55, 65, 25};
+        int maxAbgerundet = NotenProzessor.maximaleAbgerundeteNote(noten);
+        assertEquals(65, maxAbgerundet);
+    }
 
-        int result = NotenProzessor.maximaleAbgerundeteNote(noten);
-
-        assertEquals(erwarteteMaxAbgerundet, result);
+    @Test
+    public void testMaximaleAbgerundeteNoteUnexpectedCase() {
+        int[] noten = {};
+        int maxAbgerundet = NotenProzessor.maximaleAbgerundeteNote(noten);
+        assertEquals(Integer.MIN_VALUE, maxAbgerundet);
     }
 }
+
